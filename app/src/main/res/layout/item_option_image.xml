@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:padding="@dimen/margin_small"
+             android:background="@drawable/option_selector">
+
+    <ImageView
+            android:id="@+id/option_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dummy_option"/>
+
+
+    <TextView
+            android:id="@+id/percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginRight="@dimen/margin_small"
+            android:text="12%"/>
+
+
+    <View
+            android:id="@+id/percentage_bar"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:visibility="gone"
+            android:background="@drawable/percentage_selector"/>
+
+</FrameLayout>

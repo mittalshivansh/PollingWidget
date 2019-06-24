@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/margin_medium">
+
+    <TextView
+            android:id="@+id/text_question_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:text="Is this sdk  dsnd n"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/text_options_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+</LinearLayout>
