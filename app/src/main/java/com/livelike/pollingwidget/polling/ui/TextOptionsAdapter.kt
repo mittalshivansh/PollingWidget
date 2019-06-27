@@ -30,6 +30,7 @@ class TextOptionsAdapter(
 
         val option = options!![position]
         holder.optionLabel.text = option.value
+        holder.percentage.text = "${option.percentage} %"
 
         holder.item.isSelected = option.id == selectedOption
 

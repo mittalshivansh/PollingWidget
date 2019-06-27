@@ -12,5 +12,6 @@ class OptionEntity constructor(
     id: Long,
     inActive: Boolean,
     val questionId: Long,
-    val value: String
+    val value: String,
+    val percentage : Int
 ) : AbstractEntity(id, inActive)

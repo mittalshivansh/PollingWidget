@@ -11,7 +11,7 @@ import kotlinx.coroutines.delay
  */
 object QuestionsRemoteDataSource {
 
-    private const val SERVICE_LATENCY_IN_MILLIS = 3000L
+    private const val SERVICE_LATENCY_IN_MILLIS = 1000L
 
     private var DUMMY_DATA = HashMap<Int, QuestionOptionRelation>(2)
 
@@ -23,7 +23,7 @@ object QuestionsRemoteDataSource {
 
     suspend fun getQuestion(questionType: Int): QuestionOptionRelation {
         delay(SERVICE_LATENCY_IN_MILLIS)
-        return if(questionType.equals(QuestionType.TEXT))
+        return if(questionType.equals(QuestionType.TEXT.id))
             DUMMY_DATA[1]!! else
             DUMMY_DATA[2]!!
 
@@ -32,7 +32,7 @@ object QuestionsRemoteDataSource {
     private fun getImageOptions(): List<OptionEntity> {
         val options = mutableListOf<OptionEntity>()
         for (i in 1..4) {
-            options.add(OptionEntity((4 + i).toLong(), false, 2, ""))
+            options.add(OptionEntity((4 + i).toLong(), false, 2, "",10*i))
         }
         return options
     }
@@ -50,7 +50,7 @@ object QuestionsRemoteDataSource {
     private fun getTextOptions(): List<OptionEntity> {
         val options = mutableListOf<OptionEntity>()
         for (i in 1..4) {
-            options.add(OptionEntity(i.toLong(), false, 1, "Awesome"))
+            options.add(OptionEntity(i.toLong(), false, 1, "Awesome",10*i))
         }
         return options
     }

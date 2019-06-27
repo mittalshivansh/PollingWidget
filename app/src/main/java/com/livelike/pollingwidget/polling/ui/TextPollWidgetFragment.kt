@@ -46,8 +46,8 @@ class TextPollWidgetFragment : Fragment() {
     private fun setupViewBindings() {
 
         viewModel.state.observe(this, Observer {
-            when (it){
-                is State.ShowLoading -> loading_bar.isVisible=true
+            when (it) {
+                is State.ShowLoading -> loading_bar.isVisible = true
                 is State.Success -> loading_bar.isVisible = false
                 is State.ShowError -> loading_bar.isVisible = false
             }.exhaustive
@@ -63,8 +63,8 @@ class TextPollWidgetFragment : Fragment() {
                 text_question_title.text = question.value
                 textOptionsAdapter.replaceData(question.options)
             })
-        viewModel.selectedAnswer.observe(viewLifecycleOwner, Observer{
-            textOptionsAdapter.setSelectedAnswer(it.optionId)
+        viewModel.selectedAnswer.observe(viewLifecycleOwner, Observer {
+            it?.let { textOptionsAdapter.setSelectedAnswer(it.optionId) }
         })
 
     }

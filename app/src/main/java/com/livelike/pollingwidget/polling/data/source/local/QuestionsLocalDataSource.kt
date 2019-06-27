@@ -5,7 +5,6 @@ import com.livelike.pollingwidget.core.database.PollingDatabase
 import com.livelike.pollingwidget.polling.data.models.AnswerEntity
 import com.livelike.pollingwidget.polling.data.models.QuestionEntity
 import com.livelike.pollingwidget.polling.data.models.QuestionOptionRelation
-import com.livelike.pollingwidget.polling.data.models.QuestionType
 
 
 object QuestionsLocalDataSource {
@@ -14,13 +13,16 @@ object QuestionsLocalDataSource {
 
 
     suspend fun insertQuestion(questionOptionRelation: QuestionOptionRelation) {
-        questionsDao.insert(
-            QuestionEntity(
-                questionOptionRelation.id, questionOptionRelation.inActive,
-                questionOptionRelation.type, questionOptionRelation.value
+        PollingDatabase.getInstance().runInTransaction{
+            questionsDao.insertOrUpdate(
+                QuestionEntity(
+                    questionOptionRelation.id, questionOptionRelation.inActive,
+                    questionOptionRelation.type, questionOptionRelation.value
+                )
             )
-        )
-        PollingDatabase.getInstance().optionsDao().insertAll(questionOptionRelation.options)
+            PollingDatabase.getInstance().optionsDao().insertOrUpdateAll(questionOptionRelation.options)
+        }
+
     }
 
 
@@ -35,7 +37,7 @@ object QuestionsLocalDataSource {
     }
 
     suspend fun selectAnswer(answerEntity: AnswerEntity) {
-        PollingDatabase.getInstance().answerDao().update(answerEntity)
+        PollingDatabase.getInstance().answerDao().insertOrUpdate(answerEntity)
     }
 
 }

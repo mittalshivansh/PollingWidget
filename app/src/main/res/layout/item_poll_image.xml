@@ -6,7 +6,7 @@
 >
 
 
-    <androidx.recyclerview.widget.Recycleitem_poll_imagerView
+    <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/image_options_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

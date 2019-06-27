@@ -69,7 +69,8 @@ class ImagePollWidgetFragment : Fragment() {
             })
 
         viewModel.selectedAnswer.observe(viewLifecycleOwner, Observer{
-            imageOptionsAdapter.setSelectedAnswer(it.optionId)
+            it?.let {imageOptionsAdapter.setSelectedAnswer(it.optionId)}
+
         })
 
     }

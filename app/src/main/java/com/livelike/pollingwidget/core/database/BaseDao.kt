@@ -11,17 +11,16 @@ abstract class BaseDao<T> {
 
     @Transaction
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun updateAll(vararg objs: T): Int
+    abstract fun updateAll(vararg objs: T): Int
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    abstract suspend fun insert(obj: T): Long
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract fun insertOrUpdate(obj: T): Long
 
-    @Transaction
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    abstract suspend fun insertAll(objs: List<T>): LongArray
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract fun insertOrUpdateAll(objs: List<T>): LongArray
 
     @Delete
-    abstract suspend fun delete(obj: T)
+    abstract fun delete(obj: T)
 
 
 }

@@ -25,6 +25,7 @@ Rules:
 
 ### Pending TODOs ###
 * Move common traits and code of poll widget in BaseWidget to keep the code dry
+* make all BaseDao function suspendable
 * Todo : add foriegn key  declarations in schema, timertask or any other alternative to refresh percentage every second
     
      

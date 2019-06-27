@@ -34,7 +34,8 @@ class ImageOptionsAdapter(
         val option = options!![position]
 
         holder.optionImage.loadImage(option.value)
-
+        holder.percentage.text = "${option.percentage} %"
+        
         holder.item.isSelected = option.id == selectedOption
 
         holder.item.setOnClickListener {
