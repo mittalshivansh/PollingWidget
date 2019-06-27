@@ -40,7 +40,7 @@ object QuestionsRemoteDataSource {
     private fun addDummyData(questionType: QuestionType, question: String, options: List<OptionEntity>) {
         DUMMY_DATA.put(
             questionType.id, QuestionOptionRelation(
-                questionType.id.toLong(),
+                questionType.id.toLong(),false,
                 questionType.id, question, options
             )
         )
