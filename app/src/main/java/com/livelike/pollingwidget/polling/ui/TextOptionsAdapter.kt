@@ -15,7 +15,7 @@ import com.livelike.pollingwidget.polling.data.models.OptionEntity
  */
 class TextOptionsAdapter(
     private var options: List<OptionEntity>?,
-    private val viewModel: PollingWidgetViewModel
+    private val viewModel: TextPollWidgetViewModel
 ) : RecyclerView.Adapter<TextOptionsAdapter.VH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {

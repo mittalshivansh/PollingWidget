@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.livelike.pollingwidget.core.util.distinctUntilChanged
 import kotlinx.coroutines.*
 import java.lang.Exception
 import kotlin.coroutines.coroutineContext
@@ -49,7 +50,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
         return this
     }
 
-    fun asLiveData() = result as LiveData<Resource<ResultType>>
+    fun asLiveData() = (result as LiveData<Resource<ResultType>>).distinctUntilChanged()
 
     // ---
 

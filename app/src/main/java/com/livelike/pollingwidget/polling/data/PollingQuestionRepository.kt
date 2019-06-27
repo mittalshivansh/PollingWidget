@@ -1,9 +1,9 @@
 package com.livelike.pollingwidget.polling.data
 
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.livelike.pollingwidget.core.NetworkBoundResource
 import com.livelike.pollingwidget.core.Resource
+import com.livelike.pollingwidget.core.util.distinctUntilChanged
 import com.livelike.pollingwidget.polling.data.models.QuestionOptionRelation
 import com.livelike.pollingwidget.polling.data.source.local.QuestionsLocalDataSource
 import com.livelike.pollingwidget.polling.data.source.remote.QuestionsRemoteDataSource
@@ -19,8 +19,9 @@ object PollingQuestionRepository {
     val remoteDataSource = QuestionsRemoteDataSource
 
 
-    suspend fun getTextTypeQuestion(): LiveData<Resource<QuestionOptionRelation>> {
+    //For now separating both the question types to segregate their updates
 
+    suspend fun getTextTypeQuestion(): LiveData<Resource<QuestionOptionRelation>> {
         return object : NetworkBoundResource<QuestionOptionRelation, QuestionOptionRelation>() {
             override suspend fun saveCallResults(items: QuestionOptionRelation) {
                 return withContext(Dispatchers.Default) {
@@ -42,7 +43,7 @@ object PollingQuestionRepository {
                 return CoroutineScope(Dispatchers.Default).async { remoteDataSource.getTextQuestion() }
             }
 
-        }.build().asLiveData()
+        }.build().asLiveData().distinctUntilChanged()
     }
 
     suspend fun getImageTypeQuestion(): LiveData<Resource<QuestionOptionRelation>> {
@@ -68,7 +69,7 @@ object PollingQuestionRepository {
                 return CoroutineScope(Dispatchers.Default).async { remoteDataSource.getImageQuestion() }
             }
 
-        }.build().asLiveData()
+        }.build().asLiveData().distinctUntilChanged()
     }
 
 

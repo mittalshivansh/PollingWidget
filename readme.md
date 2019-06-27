@@ -19,9 +19,8 @@ Rules:
 
 * Skipping DI for now to hustle up
 * Implementing MVVM 
-* using LiveData for reactive bindings
-* Coroutines for efficient threading
-* Giving preference to RecyclerView even for small list. As notifyDataSetChanged or updating data operation for normal LinearLayout will be  more expensive than RecyclerView,
-  Also RecyclerView nicer Api helps us to keep the code clean out of the box
+* ViewModel to survive the state during orientation change
+* LiveData for reactive bindings
+* Coroutines for async tasks 
     
-    
+     

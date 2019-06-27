@@ -5,14 +5,9 @@ import com.livelike.pollingwidget.core.Resource
 import com.livelike.pollingwidget.core.State
 import com.livelike.pollingwidget.polling.data.PollingQuestionRepository
 import com.livelike.pollingwidget.polling.data.models.QuestionOptionRelation
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-/**
- * Created by shivanshmittal on 2019-06-23.
- */
-
-class PollingWidgetViewModel : ViewModel() {
+class TextPollWidgetViewModel : ViewModel() {
 
     val state = MutableLiveData<State>()
 
@@ -32,7 +27,7 @@ class PollingWidgetViewModel : ViewModel() {
 
             state.value = State.ShowLoading
 
-            viewModelScope.launch{
+            viewModelScope.launch {
                 _textTypeQuestion.addSource(PollingQuestionRepository.getTextTypeQuestion()) {
                     if (it.status.equals(Resource.Status.SUCCESS))
                         _textTypeQuestion.postValue(it.data)

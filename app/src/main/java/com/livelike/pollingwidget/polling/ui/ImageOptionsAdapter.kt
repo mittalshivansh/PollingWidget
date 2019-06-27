@@ -14,8 +14,8 @@ import com.livelike.pollingwidget.polling.data.models.OptionEntity
  * Created by shivanshmittal on 2019-06-24.
  */
 class ImageOptionsAdapter(
-    private var options: List<OptionEntity>?,
-    private val viewModel: PollingWidgetViewModel
+    private var  options: List<OptionEntity>?,
+    private val viewModel: ImagePollWidgetViewModel
 ) : RecyclerView.Adapter<ImageOptionsAdapter.VH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageOptionsAdapter.VH {
