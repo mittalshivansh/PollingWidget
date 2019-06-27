@@ -35,7 +35,7 @@ class ImageOptionsAdapter(
 
         holder.optionImage.loadImage(option.value)
         holder.percentage.text = "${option.percentage} %"
-        
+
         holder.item.isSelected = option.id == selectedOption
 
         holder.item.setOnClickListener {
