@@ -42,7 +42,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                 }
             } else {
                 Log.d(NetworkBoundResource::class.java.name, "Return data from local database")
-                result.addSource(loadFromDb()){newData ->
+                result.addSource(dbResult){newData ->
                     setValue(Resource.success(newData))
                 }
             }

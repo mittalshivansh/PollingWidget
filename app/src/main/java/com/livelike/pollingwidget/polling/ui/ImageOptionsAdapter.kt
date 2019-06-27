@@ -15,8 +15,11 @@ import com.livelike.pollingwidget.polling.data.models.OptionEntity
  */
 class ImageOptionsAdapter(
     private var  options: List<OptionEntity>?,
-    private val viewModel: ImagePollWidgetViewModel
+    private val viewModel: PollWidgetViewModel
 ) : RecyclerView.Adapter<ImageOptionsAdapter.VH>() {
+
+
+    private var selectedOption: Long? = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageOptionsAdapter.VH {
         return ImageOptionsAdapter.VH(LayoutInflater.from(parent.context).inflate(R.layout.item_option_image, null))
@@ -31,10 +34,22 @@ class ImageOptionsAdapter(
         val option = options!![position]
 
         holder.optionImage.loadImage(option.value)
+
+        holder.item.isSelected = option.id == selectedOption
+
+        holder.item.setOnClickListener {
+            // Not updating ui here to follow single source of truth principle and to encourage unidirectional flow
+            viewModel.selectAnswer(option.questionId,option.id)
+        }
     }
 
     fun replaceData(options: List<OptionEntity>) {
         this.options = options
+        notifyDataSetChanged()
+    }
+
+    fun setSelectedAnswer(id: Long) {
+        selectedOption = id
         notifyDataSetChanged()
     }
 

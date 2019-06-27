@@ -9,11 +9,11 @@ class QuestionOptionRelation {
 
     var id: Long = 0
     var inActive: Boolean = false
-    var type: Int=0
-    lateinit var value: String
+    var type: Int = 0
+    var value: String
 
     @Relation(parentColumn = "id", entityColumn = "questionId")
-    lateinit var options: List<OptionEntity>
+    var options: List<OptionEntity>
 
 
     constructor(id: Long, type: Int, value: String, options: List<OptionEntity>) {

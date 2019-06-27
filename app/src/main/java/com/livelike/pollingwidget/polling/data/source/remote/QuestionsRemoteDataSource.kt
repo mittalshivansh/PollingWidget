@@ -21,16 +21,13 @@ object QuestionsRemoteDataSource {
     }
 
 
-    suspend fun getTextQuestion(): QuestionOptionRelation {
+    suspend fun getQuestion(questionType: Int): QuestionOptionRelation {
         delay(SERVICE_LATENCY_IN_MILLIS)
-        return DUMMY_DATA[1]!!
-    }
+        return if(questionType.equals(QuestionType.TEXT))
+            DUMMY_DATA[1]!! else
+            DUMMY_DATA[2]!!
 
-    suspend fun getImageQuestion(): QuestionOptionRelation {
-        delay(SERVICE_LATENCY_IN_MILLIS)
-        return DUMMY_DATA[2]!!
     }
-
 
     private fun getImageOptions(): List<OptionEntity> {
         val options = mutableListOf<OptionEntity>()

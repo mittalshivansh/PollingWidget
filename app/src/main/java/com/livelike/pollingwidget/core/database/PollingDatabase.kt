@@ -9,8 +9,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import android.content.Context
 import com.livelike.pollingwidget.PollingApp
+import com.livelike.pollingwidget.polling.data.models.AnswerEntity
 import com.livelike.pollingwidget.polling.data.models.OptionEntity
 import com.livelike.pollingwidget.polling.data.models.QuestionEntity
+import com.livelike.pollingwidget.polling.data.source.AnswerDao
 import com.livelike.pollingwidget.polling.data.source.local.OptionsDao
 
 import com.livelike.pollingwidget.polling.data.source.local.QuestionsDao
@@ -18,11 +20,12 @@ import com.livelike.pollingwidget.polling.data.source.local.QuestionsDao
 /**
  * The Room Database that contains the Task table.
  */
-@Database(entities = arrayOf(QuestionEntity::class,OptionEntity::class), version = 1)
+@Database(entities = arrayOf(QuestionEntity::class, OptionEntity::class, AnswerEntity::class), version = 1)
 abstract class PollingDatabase : RoomDatabase() {
 
     abstract fun questionsDao(): QuestionsDao
     abstract fun optionsDao(): OptionsDao
+    abstract fun answerDao(): AnswerDao
 
     companion object {
 
@@ -33,9 +36,11 @@ abstract class PollingDatabase : RoomDatabase() {
         fun getInstance(): PollingDatabase {
             synchronized(lock) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(PollingApp.get(),
-                            PollingDatabase::class.java, "poll.db")
-                            .build()
+                    INSTANCE = Room.databaseBuilder(
+                        PollingApp.get(),
+                        PollingDatabase::class.java, "poll.db"
+                    )
+                        .build()
                 }
                 return INSTANCE!!
             }

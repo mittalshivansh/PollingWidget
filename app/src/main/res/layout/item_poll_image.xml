@@ -6,7 +6,7 @@
 >
 
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.Recycleitem_poll_imagerView
             android:id="@+id/image_options_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -16,5 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
-            android:text="Who is your mvp this year"/>
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:text="-"/>
 </LinearLayout>

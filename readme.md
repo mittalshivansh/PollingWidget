@@ -22,5 +22,9 @@ Rules:
 * ViewModel to survive the state during orientation change
 * LiveData for reactive bindings
 * Coroutines for async tasks 
+
+### Pending TODOs ###
+* Move common traits and code of poll widget in BaseWidget to keep the code dry
+* Todo : add foriegn key  declarations in schema, timertask or any other alternative to refresh percentage every second
     
      

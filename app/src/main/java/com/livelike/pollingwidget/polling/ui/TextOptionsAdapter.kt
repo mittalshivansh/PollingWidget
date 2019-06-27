@@ -3,8 +3,6 @@ package com.livelike.pollingwidget.polling.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.livelike.pollingwidget.R
@@ -15,8 +13,10 @@ import com.livelike.pollingwidget.polling.data.models.OptionEntity
  */
 class TextOptionsAdapter(
     private var options: List<OptionEntity>?,
-    private val viewModel: TextPollWidgetViewModel
+    private val viewModel: PollWidgetViewModel
 ) : RecyclerView.Adapter<TextOptionsAdapter.VH>() {
+
+    private var selectedOption: Long? = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return VH(LayoutInflater.from(parent.context).inflate(R.layout.item_option_text, null))
@@ -30,10 +30,23 @@ class TextOptionsAdapter(
 
         val option = options!![position]
         holder.optionLabel.text = option.value
+
+        holder.item.isSelected = option.id == selectedOption
+
+        holder.item.setOnClickListener {
+            // Not updating ui here to follow single source of truth principle and to encourage unidirectional flow
+            viewModel.selectAnswer(option.questionId,option.id)
+        }
+
     }
 
     fun replaceData(options: List<OptionEntity>) {
         this.options = options
+        notifyDataSetChanged()
+    }
+
+    fun setSelectedAnswer(id: Long) {
+        selectedOption = id
         notifyDataSetChanged()
     }
 

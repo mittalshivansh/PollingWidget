@@ -16,7 +16,7 @@ import com.livelike.pollingwidget.polling.data.models.QuestionEntity
 import com.livelike.pollingwidget.polling.data.models.QuestionOptionRelation
 
 /**
- * Data Access Object for the tasks table.
+ * Data Access Object for the Options table.
  */
 @Dao
 abstract class OptionsDao : BaseDao<OptionEntity>() {
